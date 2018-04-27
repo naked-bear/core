@@ -1,0 +1,103 @@
+.navbar-item img {
+    max-height: 100%;
+}
+
+.hero.is-white a.navbar-item:hover, .hero.is-white a.navbar-item.is-active, .hero.is-white .navbar-link:hover, .hero.is-white .navbar-link.is-active {
+    background-color:transparent;
+}
+
+.major {
+    font-size:3.5rem;
+}
+
+.spacing-sm {
+    height:8px;
+}
+
+
+.spacing-lg {
+    height:5rem;
+}
+
+.spacing-md {
+    height:2rem;
+}
+
+.footer {
+    background-color:#29247a;
+    color:#ffffff;
+}
+
+.footer .subtitle {
+    color:#ffffff;
+}
+
+.footer a {
+    color:#a444ff;
+}
+
+.is-purple {
+	background-color: transparent;
+	color: #a444ff;
+	border-color: #a444ff;
+}
+
+.is-purple:hover {
+	background-color: #a444ff;
+	color: #29247a;
+	border-color: transparent;
+}
+
+.number {
+    background-color: #29247a;
+    color:#ffffff;
+    position: absolute;
+    z-index:10;
+    left:-15px;
+    top:-15px;
+    min-width: 2em;
+}
+
+.box {
+	position: relative;
+}
+
+.purple-btn, .purple-btn:hover {
+    background-color: #453ECA;
+    border-color: transparent;
+    color: #fff;
+}
+
+.no-margins {
+    margin-top:0;
+    margin-bottom:0;
+    padding:0;
+}
+
+.is-purple, .is-purple:hover {
+    background-color: transparent;
+    color: #453ECA;
+}
+
+h3.no-margins {
+    font-size: 24px;
+}
+
+h5.no-margins {
+    margin-bottom: 16px;
+}
+
+.ldBar-label {
+    font-family: verdana;
+    font-size: 1.5em;
+    font-weight: 400
+}
+
+p.content {
+    padding: 16px;
+}
+
+.red {
+    color:red;
+    font-weight: bold;
+}

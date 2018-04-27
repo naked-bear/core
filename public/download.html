@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NakedBear - Create a secure and sharable url for any file on your computer</title>
+    <meta name="viewport" content="user-scalable=no, width=device-width">
+    <link rel="stylesheet" type="text/css" href="/dist/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/dist/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="/dist/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/dist/css/loading-bar.css"/>
+    <script type="text/javascript" src="/dist/js/loading-bar.js"></script>
+    <script src="/dist/js/socket.io.js"></script>
+    <script src="/dist/js/socket.io-stream.js"></script>
+    <script src="/dist/js/jquery.js"></script>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            let isMobile = {
+                Android: function() {
+                    return navigator.userAgent.match(/Android/i);
+                },
+                BlackBerry: function() {
+                    return navigator.userAgent.match(/BlackBerry/i);
+                },
+                iOS: function() {
+                    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+                },
+                Opera: function() {
+                    return navigator.userAgent.match(/Opera Mini/i);
+                },
+                Windows: function() {
+                    return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+                },
+                any: function() {
+                    return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                }
+            };
+
+            let isChrome = !!window.chrome && !!window.chrome.webstore;
+            let isFirefox = typeof InstallTrigger !== 'undefined';
+            let isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+            let isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+
+
+            if(!isChrome && !isFirefox && !isOpera && !isSafari && !isMobile.Android()){
+                $('#status').html('<h1 class="title is-size-4">Browser Not Supported</h1>Supported Browsers Include:')
+                        .append('<ul><li>&middot; Google Chrome</li><li>&middot; Mozilla Firefox</li><li>&middot; Opera</li></ul>');
+            } else {
+
+                $('#status').html(' > Loading...');
+
+                let circle = new ldBar("#progressPercent");
+                let bodyparts = [];
+                let bodylength = 0;
+                let size = 0;
+
+                let isLoaded = false;
+                let socket = io.connect('http://' + document.domain + ':' + location.port);
+                socket.on('connect', function () {
+
+                    $('#status').append('<br> > Connected to NakedBear Relay');
+
+                    let params = window.location.pathname.split('/');
+                    let username = params[1];
+                    let id = params[2];
+                    if (!isLoaded) {
+
+                        $('#status').append('<br> > Retrieving File Information...');
+
+                        socket.emit('request_file_meta', {username: username, id: id});
+
+                        socket.on('response_file_meta', function (data) {
+
+                            if (data.status) {
+
+                                $('#status').append('<br> > Retrieved File Information').addClass('is-hidden');
+
+                                let file = data.ticket.file;
+                                $('#fileName').html(file.name);
+                                $('#fileSize').html(convertFileSize(file.size));
+
+                                $('#download').removeClass('is-hidden');
+
+                                let download = document.getElementById('download');
+                                let svg = download.getElementsByTagName('svg');
+                                let label = download.getElementsByClassName('ldBar-label');
+
+                                if (svg.length > 1) {
+                                    svg[0].remove();
+                                }
+
+                                if (label.length > 1) {
+                                    label[0].remove();
+                                }
+
+
+                                $('#downloadBtn').click(function () {
+                                    $('#downloadBtn').addClass('is-loading').unbind().click(function () {
+                                        location.reload();
+                                    });
+
+                                    bodyparts = [];
+                                    bodylength = 0;
+                                    size = 0;
+                                    circle.set(0);
+
+                                    socket.emit('request_file', data);
+
+                                    socket.on('response_file', function (chunk) {
+                                        size += chunk.byteLength;
+                                        let body = new Uint8Array(chunk);
+                                        bodyparts.push(body);
+                                        bodylength += body.length;
+                                        let percent = Math.floor(size / file.size * 100);
+                                        circle.set(percent);
+                                    });
+
+                                    socket.on('file_end', function (isFinished) {
+                                        $('#downloadBtn').removeClass('is-loading');
+                                        saveByteArray(bodyparts, file.name);
+                                    });
+                                });
+                            } else {
+                                $('#status').append('<br><span class="red"> > Unable to Retrieve File Information</span>')
+                                    .append('<br><span class="red"> > The file may have been deleted or moved</span>');
+                            }
+
+                        });
+
+
+                        isLoaded = true;
+                    }
+                });
+            }
+        });
+
+
+    </script>
+
+</head>
+
+<body>
+
+
+    <section class="hero is-fullheight is-light">
+
+        <div class="hero-body">
+            <div class="container">
+
+                <div class="is-centered has-text-centered">
+                    <center>
+                        <figure class="image is-64x64">
+                            <a href="/"><img src="/dist/images/logo.png" /></a>
+                        </figure>
+                    </center>
+                    <h3 class="is-purple no-margins">NakedBear</h3>
+                    <h5 class="no-margins is-purple">Direct File Sharing</h5>
+                </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-4">
+                        <div class="box">
+                            <div id="download" class="is-hidden has-text-centered">
+                                <div
+                                        id="progressPercent"
+                                        class="ldBar label-center"
+                                        style="width:80%;height:80%;margin:auto"
+                                        data-value="0"
+                                        data-preset="circle"
+                                        data-stroke="#453ECA"
+                                        data-stroke-width="3"
+                                ></div>
+                                <h1 class="is-size-4" id="fileName"></h1>
+                                <h3 class="is-size-5" id="fileSize"></h3>
+                                <br>
+                                <a id="downloadBtn" class="button purple-btn is-medium is-fullwidth">Download</a>
+                            </div>
+                            <div id="status"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-foot">
+            <div class="container has-text-centered">
+                <section class="section">
+                    <p>
+                        Share files directly from your computer without uploading anywhere.
+                    </p>
+                    <p>
+                        <a href="/">Download NakedBear</a>
+                    </p>
+                </section>
+                <br>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        function convertFileSize(size) {
+            let i = Math.floor( Math.log(size) / Math.log(1024) );
+            return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
+        }
+
+        let saveByteArray = (function () {
+            let a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            return function (data, name) {
+                let blob = new Blob(data, {type: "octet/stream"}),
+                    url = window.URL.createObjectURL(blob);
+                a.href = url;
+                a.download = name;
+                a.click();
+                window.URL.revokeObjectURL(url);
+            };
+        }());
+    </script>
+</body>
+</html>

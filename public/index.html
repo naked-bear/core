@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title>NakedBear - Create a secure and sharable url for any file on your computer</title>
+            <meta name="viewport" content="user-scalable=no, width=device-width">
+	        <link rel="stylesheet" type="text/css" href="/dist/css/font-awesome.css">
+            <link rel="stylesheet" type="text/css" href="/dist/css/bulma.css">
+            <link rel="stylesheet" type="text/css" href="/dist/css/style.css">
+
+            <script src="/dist/js/jquery.js"></script>
+    </head>
+
+    <body>
+
+
+        <section class="hero is-white is-fullheight">
+          <div class="hero-head">
+            <header class="navbar">
+              <div class="container">
+                <div class="navbar-brand">
+                  <a class="navbar-item">
+                    <img src="/dist/images/banner.png" alt="NakedBear" width="150">
+                  </a>
+                  <span class="navbar-burger burger" data-target="navbarMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-start">
+                      <a class="navbar-item" href="#">
+                        How it Works
+                      </a>
+                        <a class="navbar-item" href="#">
+                        Pricing
+                      </a>
+                        <a class="navbar-item" href="#">
+                        Blog
+                      </a>
+
+                        <a class="navbar-item" href="#">
+                        Docs
+                      </a>
+                    </div>
+
+                  <div class="navbar-end">
+                    <a class="navbar-item" href="#">
+                      Login
+                    </a>
+                    <a class="navbar-item" href="#">
+                      Sign Up
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </header>
+          </div>
+
+          <!-- Hero content: will be in the middle -->
+          <div class="hero-body">
+            <div class="container has-text-centered is-centered">
+
+              
+
+              <h1 class="title major">
+                Own Your Data
+              </h1>
+
+              <h2 class="subtitle">
+                Generate a secure url for any file on your computer to share it with the world.
+              </h2>
+
+
+                <div class="spacing-sm"></div>
+
+
+                <div class="columns">
+
+                  <div class="column is-2"></div>
+
+                  <div class="column is-2 navbar-item has-dropdown">
+                      <a class="button is-medium is-fullwidth">
+                          <span class="icon is-small">
+                              <i class="fa fa-apple"></i>
+                          </span>
+                          <span>macOS</span>
+                      </a>
+                  </div>
+
+                  <div class="column is-1"></div>
+
+
+                  <div id="windowsBtn" class="column is-2 navbar-item has-dropdown">
+                    <a class="button is-medium is-fullwidth" onclick="$('#windowsBtn').toggleClass('is-active')">
+                        <span class="icon is-small">
+                            <i class="fa fa-windows"></i>
+                        </span>
+                        <span>Windows</span>
+                        <span class="icon is-small">
+                            <i class="fa fa-angle-down"></i>
+                        </span>
+                    </a>
+
+
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item">
+                        x32
+                      </a>
+                      <a class="navbar-item">
+                        x64
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="column is-1"></div>
+
+                  <div id="linuxBtn" class="column is-2 navbar-item has-dropdown">
+                    <a class="button is-medium is-fullwidth" onclick="$('#linuxBtn').toggleClass('is-active')">
+                        <span class="icon is-small">
+                            <i class="fa fa-linux"></i>
+                        </span>
+                        <span>Linux</span>
+                        <span class="icon is-small">
+                            <i class="fa fa-angle-down"></i>
+                        </span>
+                    </a>
+
+
+                    <div class="navbar-dropdown">
+                      <a class="navbar-item">
+                        x32
+                      </a>
+                      <a class="navbar-item">
+                        x64
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="column is-2"></div>
+
+                </div>
+
+
+                <div class="spacing-lg"></div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+        <section class="section">
+            <div class="container is-centered has-text-centered">
+                <h1 class="title has-text-centered">How it Works</h1>
+
+                <div class="spacing-md"></div>
+
+                <div class="columns">
+
+                    <div class="column is-2"></div>
+
+                    <div class="column">
+                      <div class="box">
+                        <div class="number">1</div>
+                        <div class="spacing-sm"></div>
+                        <span class="icon fa-2x">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <div class="spacing-sm"></div>
+                        <h3 class="subtitle">Sign Up & Download</h3>
+                        <p>
+                            Create a free basic account and optionally upgrade to a standard or buisness account. Download the appropriate desktop application for your 
+                            platform.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="column">
+                      <div class="box">
+                        <div class="number">2</div>
+                        <div class="spacing-sm"></div>
+                        <span class="icon fa-2x">
+                            <i class="fa fa-file"></i>
+                        </span>
+                        <div class="spacing-sm"></div>
+                        <h3 class="subtitle">Add Files to Transfer</h3>
+                        <p>
+                            Browse for the files to be transferred. No need to upload files anywhere. You are the sole owner of your data.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="column is-2"></div>
+                </div>
+                <div class="columns">
+
+                    <div class="column is-2"></div>
+
+                    <div class="column">
+                        <div class="box">
+                          <div class="number">3</div>
+                          <div class="spacing-sm"></div>
+                          <span class="icon fa-2x">
+                            <i class="fa fa-link"></i>
+                          </span>
+                          <div class="spacing-sm"></div>
+                          <h3 class="subtitle">Generate Secure URL</h3>
+                          <p>
+                              Secure URLs will automatically be generated once files are added. Set optional features like password protection, max download limit, etc.
+                          </p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="box">
+                          <div class="number">4</div>
+                          <div class="spacing-sm"></div>
+                          <span class="icon fa-2x">
+                            <i class="fa fa-download"></i>
+                          </span>
+                          <div class="spacing-sm"></div>
+                          <h3 class="subtitle">Download Files</h3>
+                          <p>
+                              Files will be downloaded from your computer. NakedBear will relay the data between you and the downloader with end-to-end encryption. 
+                          </p>
+                        </div>
+                    </div>
+
+                    <div class="column is-2"></div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="pricing" class="section">
+            <div class="container has-text-centered">
+                <h1 class="title">
+                    Pricing
+                </h1>
+
+                <div class="spacing-md"></div>
+
+                <div class="columns has-text-centered is-centered">
+
+                    <div class="column is-3">
+                        <div class="box">
+                            <h2 class="subtitle">
+                                Basic
+                            </h2>
+
+                            <p class="content">
+                                1 User Account
+                            </p>
+                            <p class="content">
+                                100 File Transfers / Month
+                            </p>
+                            <p class="content">
+                                5 Simultaneous File Transfers 
+                            </p>
+                            <p class="content">
+                               -
+                            </p>
+                            <br>
+                            <p class="content has-text-weight-bold">
+                                Free
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="column is-1"></div>
+
+                    <div class="column is-3">
+                        <div class="box">
+                            <h2 class="subtitle">
+                                Standard
+                            </h2>
+
+                            <p class="content">
+                                1 User Account
+                            </p>
+                            <p class="content">
+                                Unlimited File Transfers
+                            </p>
+                            <p class="content">
+                                Admin Dashboard
+                            </p>
+                            <p class="content">
+                                Password Protect Files
+                            </p>
+                            <br>
+                            <p class="content has-text-weight-bold">
+                                $3.99 / month
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="column is-1"></div>
+
+                    <div class="column is-3">
+                        <div class="box">
+                            <h2 class="subtitle">
+                                Buisness
+                            </h2>
+
+                            <p class="content">
+                                5+ User Accounts
+                            </p>
+                            <p class="content">
+                                Unlimited File Transfers
+                            </p>
+                            <p class="content">
+                               Admin Dashboard
+                            </p>
+                            <p class="content">
+                               Password Protect Files
+                            </p>
+                            <br>
+                            <p class="content has-text-weight-bold">
+                                $1.99 / user / month
+                            </p>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+
+            </div>
+
+            <div class="spacing-lg"></div>
+
+        </section>
+
+
+
+        <footer class="footer">
+          <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <h3 class="subtitle">Company</h3>
+                    <a href="#">About Us</a><br>
+                    <a href="#">Blog</a><br>
+                    <a href="#">Careers</a><br>
+                </div>
+
+                <div class="column">
+                    <h3 class="subtitle">Product</h3>
+                    <a href="#">How it Works</a><br>
+                    <a href="#">Platforms</a><br>
+                    <a href="#">Pricing</a><br>
+                    <a href="#">Status</a><br>
+                </div>
+
+                <div class="column">
+                    <h3 class="subtitle">Connect</h3>
+                    <a href="#">AngelList</a><br>
+                    <a href="#">Contact Us</a><br>
+                    <a href="#">Community</a><br>
+                    <a href="#">Facebook</a><br>
+                    <a href="#">Twitter</a><br>
+                </div>
+
+                <div class="column is-4 has-text-centered is-centered is-hidden-touch">
+                    <div>
+                        <img src="/dist/images/logo.png" width="100">
+                        <!-- <img src="../static/images/logo.png" width="100"> -->
+                        <h3 class="subtitle">Never Upload Another File Again</h3>
+                        <button href="#" class="button is-purple is-outlined">Download</button>
+                    </div>
+
+                </div>
+            </div>
+          </div>
+
+          <div class="spacing-lg"></div>
+
+          <div class="has-text-centered">
+              <a href="#">Terms &amp; Conditions</a>
+              ·
+              <a href="#">Privacy Policy</a>
+              ·
+              <a href="#">Content Takedown</a>
+              <p>
+                  © 2018 NakedBear, Inc.
+              </p>
+          </div>
+
+        </footer>
+
+
+
+    </body>
+</html>

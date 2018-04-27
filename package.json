@@ -1,0 +1,21 @@
+{
+  "name": "nakedbear-core",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "author": "Md Islam <me@mdislam.com>",
+  "description": "Nakedbear File Transfer Relay Server",
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "memory-streams": "^0.1.3",
+    "redis": "^2.8.0",
+    "socket.io": "^2.1.0",
+    "socket.io-stream": "^0.9.1"
+  }
+}
